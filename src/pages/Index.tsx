@@ -1,16 +1,40 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import AuthPage from "@/components/AuthPage";
+import HomePage from "@/components/HomePage";
+import AboutPage from "@/components/AboutPage";
+import ProfilePage from "@/components/ProfilePage";
+import Navbar from "@/components/Navbar";
+import ParticlesBg from "@/components/ParticlesBg";
+
+export type Page = "home" | "about" | "profile";
+
+export interface User {
+  email: string;
+}
 
 const Index = () => {
+  const [user, setUser] = useState<User | null>(null);
+  const [page, setPage] = useState<Page>("home");
+
+  if (!user) {
+    return (
+      <>
+        <ParticlesBg />
+        <AuthPage onLogin={(email) => setUser({ email })} />
+      </>
+    );
+  }
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 color-black text-black">Добро пожаловать!</h1>
-        <p className="text-xl text-gray-600">тут будет отображаться ваш проект</p>
+    <>
+      <ParticlesBg />
+      <div className="relative z-10 min-h-screen">
+        <Navbar page={page} setPage={setPage} user={user} onLogout={() => setUser(null)} />
+        {page === "home" && <HomePage />}
+        {page === "about" && <AboutPage />}
+        {page === "profile" && <ProfilePage user={user} />}
       </div>
-      <span className="absolute bottom-8 left-1/2 -translate-x-1/2 inline-block bg-[#FF6637] text-white text-sm px-4 py-2 rounded-full whitespace-nowrap">
-        Подождите 5 минут, Юра создает первую версию проекта с нуля
-      </span>
-    </div>
+    </>
   );
 };
 
