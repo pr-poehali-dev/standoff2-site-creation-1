@@ -73,7 +73,7 @@ const HomePage = () => {
               <button
                 className="cyber-btn flex items-center gap-3 px-8 py-4 rounded-xl text-white font-bold text-lg"
                 style={{ fontFamily: "'Rajdhani', sans-serif", letterSpacing: "0.1em" }}
-                onClick={() => alert("Кнопка скачать — настройте ссылку")}
+                onClick={() => window.open("https://t.me/entpere", "_blank")}
               >
                 <Icon name="Download" size={22} />
                 СКАЧАТЬ БЕСПЛАТНО
@@ -180,7 +180,7 @@ const HomePage = () => {
           <button
             className="cyber-btn inline-flex items-center gap-3 px-12 py-5 rounded-xl text-white font-black text-xl animate-glow"
             style={{ fontFamily: "'Rajdhani', sans-serif", letterSpacing: "0.12em" }}
-            onClick={() => alert("Кнопка скачать — настройте ссылку")}
+            onClick={() => window.open("https://t.me/entpere", "_blank")}
           >
             <Icon name="Download" size={26} />
             СКАЧАТЬ СЕЙЧАС
